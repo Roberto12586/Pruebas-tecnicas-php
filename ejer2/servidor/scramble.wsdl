@@ -1,0 +1,89 @@
+<?xml version ='1.0' encoding='UTF-8' ?>
+<definitions name='Scramble'
+	targetNamespace='http://localhost/master-php/aprendiendo-php/ejer2/servidor/scramble.wsdl'
+	xmlns:tns='http://localhost/master-php/aprendiendo-php/ejer2/servidor/scramble.wsdl'
+	xmlns:soap='http://schemas.xmlsoap.org/wsdl/soap/'
+	xmlns='http://schemas.xmlsoap.org/wsdl/'>
+	
+	<message name='primoRequest'>
+		<part name = 'symbol' type='xsd:integer'/>
+	</message>
+	<message name='primoResponse'>
+		<part name='Result' type='xsd:boolean'/>
+	</message>
+	<message name='concatenarRequest'>
+		<part name = 'symbol' type='xsd:string'/>
+		<part name = 'symbol2' type='xsd:string'/>
+                <part name = 'symbol3' type='xsd:string'/>
+	</message>
+	<message name='concatenarResponse'>
+		<part name='Result' type='xsd:string'/>
+	</message>
+        <message name='validar_dniRequest'>
+		<part name = 'symbol' type='xsd:string'/>
+	</message>
+	<message name='validar_dniResponse'>
+		<part name='Result' type='xsd:string'/>
+	</message>
+
+	<portType name='ScramblePortType'>
+		<operation name='primo'>
+			<input message='tns:primoRequest'/>
+			<output message='tns:primoResponse'/>
+		</operation>
+		<operation name='concatenar'>
+			<input message='tns:concatenarRequest'/>
+			<output message='tns:concatenarResponse'/>
+		</operation>
+                <operation name='validar_dni'>
+			<input message='tns:validar_dniRequest'/>
+			<output message='tns:validar_dniResponse'/>
+		</operation>
+	</portType>
+
+	<binding name = 'ScrambleBinding' type='tns:ScramblePortType'>
+			<soap:binding style='rpc'
+				transport='http://schemas.xmlsoap.org/soap/http'/>
+			<operation name='primo'>
+				<soap:operation soapAction='urn:localhost-scramble#primo'/>
+				<input>
+					<soap:body use='encoded' namespace='urn:localhost-scramble'
+						encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+				</input>
+				<output>
+					<soap:body use='encoded' namespace='urn:localhost-scramble'
+						encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+				</output>
+			</operation>
+			<operation name='concatenar'>
+				<soap:operation soapAction='urn:localhost-scramble#concatenar'/>
+				<input>
+					<soap:body use='encoded' namespace='urn:localhost-scramble'
+						encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+				</input>
+				<output>
+					<soap:body use='encoded' namespace='urn:localhost-scramble'
+						encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+				</output>
+			</operation>
+                        <operation name='validar_dni'>
+				<soap:operation soapAction='urn:localhost-scramble#validar_dni'/>
+				<input>
+					<soap:body use='encoded' namespace='urn:localhost-scramble'
+						encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+				</input>
+				<output>
+					<soap:body use='encoded' namespace='urn:localhost-scramble'
+						encodingStyle='http://schemas.xmlsoap.org/soap/encoding/'/>
+				</output>
+			</operation>
+		</binding>
+		<service name = 'ScrambeService'>
+			<port name='ScramblePort' binding='ScrambleBinding'>
+				<soap:address location='http://localhost/master-php/aprendiendo-php/ejer2/servidor/funciones.php'/>
+			</port>
+		</service>
+</definitions>	
+			
+		
+	
